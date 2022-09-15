@@ -21,9 +21,9 @@ def get_link(url, key, limit):
     data = requests.get(url).content
     sop = BeautifulSoup(data, "html.parser")
     ul = sop.find("ul", id="list_ul").find_all("li")
-    for zxc in ul:
+    for mozz in ul:
         try:
-            img = zxc.find("img")["data-srcset"]
+            img = mozz.find("img")["data-srcset"]
             link_img.append(img.split(" ")[0])
             print(h+f"\r *{h} Mengambil{k} {len(link_img)}{h} link gambar{p} {key}", end="  ")
             time.sleep(0.01)
@@ -65,9 +65,9 @@ def main():
         url = f"https://www.peakpx.com/en/search?q={key}"
         get_link(url, key, limit)
         print(len(link_img))
-        with ThreadPoolExecutor(max_workers=10) as zxc:
+        with ThreadPoolExecutor(max_workers=10) as mozz:
             for url_img in link_img:
-                zxc.submit(download, url_img, key)
+                mozz.submit(download, url_img, key)
     except KeyboardInterrupt:
         exit(m+"\n Keluar..\n")
 
